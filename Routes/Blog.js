@@ -132,9 +132,9 @@ router.route("/signin").post(async (request, response) => {
       const genToken = jwt.sign({ id: findUser._id }, process.env.SECRET_KEY);
       response.cookie("jwtToken", genToken, {
         expires: new Date(new Date().getTime() + 3600 * 1000),
-        sameSite: "none",
-        httpOnly: false,
-        secure: true,
+          sameSite: "none",
+        httpOnly: true,
+        secure: true
       });
       return response.status(200).send(findUser);
     } else {
