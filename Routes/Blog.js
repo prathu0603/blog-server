@@ -133,7 +133,7 @@ router.route("/signin").post(async (request, response) => {
       response.cookie("jwtToken", genToken, {
         expires: new Date(new Date().getTime() + 3600 * 1000),
           sameSite: "none",
-        httpOnly: true,
+        httpOnly: false,
         secure: true
       });
       return response.status(200).send(findUser);
