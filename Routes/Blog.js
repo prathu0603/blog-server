@@ -19,13 +19,16 @@ router
   .route("/blog")
   // Get All Blog Details
   .get(async (request, response) => {
-    let category = request.query.category;
+   let category = request.query.category;
+    let ownerId = request.query.ownerId;
     let blogs;
     try {
       if (category === "All") {
         blogs = await Blog.find();
       } else if (category) {
         blogs = await Blog.find({ category: category });
+      } else if (ownerId) {
+        blogs = await Blog.find({ ownerId: ownerId });
       } else {
         blogs = await Blog.find();
       }
